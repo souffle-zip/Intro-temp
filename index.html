@@ -10,159 +10,184 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(120deg, #f0f4ff, #ffffff);
-      color: #333;
+      background: #ffffff;
+      color: #111;
     }
 
-    /* 中央容器，限制寬度，手機看起來比較舒服 */
-    .container {
-      max-width: 720px;
-      margin: auto;
-      padding: 60px 24px;
+    section {
+      min-height: 100vh;          /* 每一段至少一個畫面高 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      box-sizing: border-box;
+    }
+
+    .content {
+      max-width: 600px;
+      text-align: center;
     }
 
     h1 {
       font-size: 3rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
 
-    .subtitle {
-      font-size: 1.1rem;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    
+    /* ===== Intro ===== */
+    .intro p {
       color: #555;
-      margin-bottom: 2rem;
     }
 
-    /* 卡片樣式（你原本就有，保留） */
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      margin-bottom: 24px;
+    /* ===== 幾何轉場 ===== */
+    .shape {
+      width: 80px;
+      height: 80px;
+      margin: auto;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.8s ease;
     }
 
-    /* 興趣標籤 */
-    .tag {
-      display: inline-block;
-      background: #eef2ff;
-      color: #3f51b5;
-      padding: 6px 12px;
-      border-radius: 999px;
-      margin: 6px 6px 0 0;
-      cursor: pointer;
-      transition: 0.2s;
+    /* 圓形 */
+    .circle {
+      border-radius: 50%;
+      background: #111;
     }
 
-    .tag:hover {
-      background: #3f51b5;
-      color: white;
+    /* 方形 */
+    .square {
+      background: #111;
     }
 
-    .hint {
-      font-size: 0.9rem;
-      color: #777;
-      margin-top: 12px;
+    /* 線 */
+    .line {
+      width: 120px;
+      height: 2px;
+      background: #111;
     }
 
-    /* ===== Design あ 互動用 ===== */
-    /* 一開始先把所有興趣 section 隱藏 */
-    .interest-section {
-      display: none;
+    /* 點 */
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #111;
+    }
+    /* 出現時的狀態 */
+    .show {
+      opacity: 1;
+      transform: scale(1);
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <!-- ===== 標題區 ===== -->
-    <h1>柯沛辰</h1>
-    <div class="subtitle">
-      DDP（ダブルディグリープログラム）｜工学府 土木工学専攻<br>
-      M3
-    </div>
-
-    <!-- ===== About me ===== -->
-    <div class="card">
-      <h2>About me</h2>
+  <!-- ===== Intro ===== -->
+  <section class="intro">
+    <div class="content">
+      <h1>KO</h1>
       <p>
-        DDPプログラムで土木工学を専攻しています。<br>
-        研究や授業の合間に、いろいろなことに興味を持って取り組んでいます。
+        DDPプログラム<br>
+        土木工学専攻 / 修士3年
+      </p>
+      <p style="margin-top:40px; color:#888;">
+        スクロールしてみて ↓
       </p>
     </div>
+  </section>
 
-    <!-- ===== Interests（互動入口） ===== -->
-    <div class="card">
-      <h2>好きなこと</h2>
-      <div>
-        <!-- 點擊後會顯示對應的 section -->
-        <span class="tag" onclick="show('draw')">🎨 描くこと</span>
-        <span class="tag" onclick="show('craft')">🧵 ものづくり</span>
-        <span class="tag" onclick="show('sports')">🏀 体を動かす</span>
-        <span class="tag" onclick="show('coding')">💻 プログラミング</span>
-      </div>
-      <div class="hint">タップしてみて 👆</div>
-    </div>
+  <!-- ===== 幾何轉場：圓 ===== -->
+  <section>
+    <div class="shape circle"></div>
+  </section>
 
-    <!-- ===== 每個興趣自己的 section ===== -->
-
-    <div class="card interest-section" id="draw">
-      <h2>🎨 描くこと</h2>
+  <!-- ===== 興趣 1 ===== -->
+  <section>
+    <div class="content">
+      <h2>描くこと</h2>
       <p>
         シンプルな線で、<br>
-        頭の中に浮かんだイメージを形にするのが好きです。
+        頭の中のイメージを形にします。
       </p>
     </div>
+  </section>
 
-    <div class="card interest-section" id="craft">
-      <h2>🧵 ものづくり</h2>
+  <!-- ===== 幾何轉場：線 ===== -->
+  <section>
+    <div class="shape line"></div>
+  </section>
+
+  <!-- ===== 興趣 2 ===== -->
+  <section>
+    <div class="content">
+      <h2>ものづくり</h2>
       <p>
         手を動かしながら、<br>
-        ゆっくり完成に近づいていく時間を楽しんでいます。
+        少しずつ完成に近づいていく時間。
       </p>
     </div>
+  </section>
 
-    <div class="card interest-section" id="sports">
-      <h2>🏀 体を動かす</h2>
+  <!-- ===== 幾何轉場：方形 ===== -->
+  <section>
+    <div class="shape square"></div>
+  </section>
+
+  <!-- ===== 興趣 3 ===== -->
+  <section>
+    <div class="content">
+      <h2>体を動かす</h2>
       <p>
-        体を動かすと、<br>
-        考えも自然と整理されていきます。
+        体が動くと、<br>
+        思考も自然と整っていきます。
       </p>
     </div>
+  </section>
 
-    <div class="card interest-section" id="coding">
-      <h2>💻 プログラミング</h2>
+  <!-- ===== 幾何轉場：點 ===== -->
+  <section>
+    <div class="shape dot"></div>
+  </section>
+
+  <!-- ===== 興趣 4 ===== -->
+  <section>
+    <div class="content">
+      <h2>プログラミング</h2>
       <p>
         複雑な問題を分解して、<br>
-        少しずつ形にしていく過程が好きです。
+        構造として理解すること。
       </p>
     </div>
+  </section>
 
-  </div>
-
-  <!-- ===== JavaScript：控制互動行為 ===== -->
+  <!-- ===== JavaScript：滑到才出現 ===== -->
   <script>
-    /**
-     * 顯示指定的興趣 section
-     * @param {string} id - 要顯示的 section 的 id
-     */
-    function show(id) {
-      // 取得所有興趣 section
-      const sections = document.querySelectorAll('.interest-section');
-
-      // 先全部隱藏（確保一次只顯示一個）
-      sections.forEach(section => {
-        section.style.display = 'none';
+    // 監聽畫面中元素是否進入視窗
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
       });
+    }, {
+      threshold: 0.5   // 出現一半以上才觸發
+    });
 
-      // 找到被點擊對應的 section
-      const target = document.getElementById(id);
-
-      // 如果存在，就顯示它
-      if (target) {
-        target.style.display = 'block';
-      }
-    }
+    // 只觀察幾何形狀
+    document.querySelectorAll('.shape').forEach(shape => {
+      observer.observe(shape);
+    });
   </script>
 
 </body>
