@@ -50,9 +50,7 @@
     /* ===== Intro ===== */
     .intro p {
       color: #555;
-    }
-
-    
+    }    
 
     /* ===== 不規則幾何（核心） ===== */
     .shape {
@@ -79,7 +77,7 @@
 
     /* 放大成整個畫面 */
     .shape.show {
-      transform: translate(-50%, -50%) scale(8);
+      transform: translate(-50%, -50%) scale(12);
     }
 
     /* ===== 每段顏色 ===== */
@@ -210,25 +208,6 @@
 
     shapes.forEach(shape => observer.observe(shape));
   </script>
-  
-  <!-- <!-- ===== JavaScript：滑到才出現 ===== -->
-  <script>
-    // 監聽畫面中元素是否進入視窗
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, {
-      threshold: 0.5   // 出現一半以上才觸發
-    });
-
-    // 只觀察幾何形狀
-    document.querySelectorAll('.shape').forEach(shape => {
-      observer.observe(shape);
-    });
-  </script> -->
 
 </body>
 </html>
