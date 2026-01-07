@@ -52,46 +52,7 @@
       color: #555;
     }
 
-    /* /* ===== 幾何轉場 ===== */
-    .shape {
-      width: 80px;
-      height: 80px;
-      margin: auto;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.8s ease;
-    }
-
-    /* 圓形 */
-    .circle {
-      border-radius: 50%;
-      background: #111;
-    }
-
-    /* 方形 */
-    .square {
-      background: #111;
-    }
-
-    /* 線 */
-    .line {
-      width: 120px;
-      height: 2px;
-      background: #111;
-    }
-
-    /* 點 */
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #111;
-    }
-    /* 出現時的狀態 */
-    .show {
-      opacity: 1;
-      transform: scale(1);
-    } */
+    
 
     /* ===== 不規則幾何（核心） ===== */
     .shape {
@@ -101,7 +62,7 @@
       height: 260px;
       transform: translate(-50%, -50%) scale(0);
       transition: transform 1.2s ease;
-      z-index: -1;
+      z-index: 0;
       background: currentColor;
 
       /* 不規則形狀 */
@@ -128,7 +89,7 @@
     .yellow { color: #f2c94c; }
     
     .name-ruby rt {
-      transform: translateX(6px); 
+      transform: translateX(16px); 
     }
     
     @keyframes breatheHint {
