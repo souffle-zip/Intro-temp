@@ -2,29 +2,38 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
+  <!-- 手機版顯示比例設定，GitHub Pages 一定要有 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KO | Self Introduction</title>
+
   <style>
+    /* ===== 整體頁面設定 ===== */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: linear-gradient(120deg, #f0f4ff, #ffffff);
       color: #333;
     }
+
+    /* 中央容器，限制寬度，手機看起來比較舒服 */
     .container {
       max-width: 720px;
       margin: auto;
       padding: 60px 24px;
     }
+
     h1 {
       font-size: 3rem;
       margin-bottom: 0.5rem;
     }
+
     .subtitle {
       font-size: 1.1rem;
       color: #555;
       margin-bottom: 2rem;
     }
+
+    /* 卡片樣式（你原本就有，保留） */
     .card {
       background: white;
       border-radius: 16px;
@@ -32,6 +41,8 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
       margin-bottom: 24px;
     }
+
+    /* 興趣標籤 */
     .tag {
       display: inline-block;
       background: #eef2ff;
@@ -42,26 +53,37 @@
       cursor: pointer;
       transition: 0.2s;
     }
+
     .tag:hover {
       background: #3f51b5;
       color: white;
     }
+
     .hint {
       font-size: 0.9rem;
       color: #777;
       margin-top: 12px;
     }
+
+    /* ===== Design あ 互動用 ===== */
+    /* 一開始先把所有興趣 section 隱藏 */
+    .interest-section {
+      display: none;
+    }
   </style>
 </head>
+
 <body>
 
   <div class="container">
+    <!-- ===== 標題區 ===== -->
     <h1>KO</h1>
     <div class="subtitle">
       DDP 計畫｜工學府 土木工學專攻<br>
       碩士三年級
     </div>
 
+    <!-- ===== About me ===== -->
     <div class="card">
       <h2>About me</h2>
       <p>
@@ -70,21 +92,77 @@
       </p>
     </div>
 
+    <!-- ===== Interests（互動入口） ===== -->
     <div class="card">
       <h2>Interests</h2>
       <div>
-        <span class="tag" onclick="show('畫畫')">🎨 畫畫</span>
-        <span class="tag" onclick="show('手工藝')">🧵 手工藝</span>
-        <span class="tag" onclick="show('打球')">🏀 打球</span>
-        <span class="tag" onclick="show('寫程式')">💻 寫程式</span>
+        <!-- 點擊後會顯示對應的 section -->
+        <span class="tag" onclick="show('draw')">🎨 畫畫</span>
+        <span class="tag" onclick="show('craft')">🧵 手工藝</span>
+        <span class="tag" onclick="show('sports')">🏀 打球</span>
+        <span class="tag" onclick="show('coding')">💻 寫程式</span>
       </div>
       <div class="hint">點一下看看 👆</div>
     </div>
+
+    <!-- ===== 每個興趣自己的 section（Design あ 的核心） ===== -->
+
+    <div class="card interest-section" id="draw">
+      <h2>🎨 畫畫</h2>
+      <p>
+        喜歡用簡單的線條，把腦中一閃而過的畫面留下來。  
+        比起畫得像，更在意「有沒有抓到感覺」。
+      </p>
+    </div>
+
+    <div class="card interest-section" id="craft">
+      <h2>🧵 手工藝</h2>
+      <p>
+        享受慢慢做的過程，  
+        重複的動作會讓人專心，也讓時間變慢。
+      </p>
+    </div>
+
+    <div class="card interest-section" id="sports">
+      <h2>🏀 打球</h2>
+      <p>
+        讓身體動起來，  
+        常常能把卡住的想法一起甩掉。
+      </p>
+    </div>
+
+    <div class="card interest-section" id="coding">
+      <h2>💻 寫程式</h2>
+      <p>
+        喜歡把複雜的問題拆解成可以理解的結構，  
+        當程式順利跑起來時會很有成就感。
+      </p>
+    </div>
+
   </div>
 
+  <!-- ===== JavaScript：控制互動行為 ===== -->
   <script>
-    function show(text) {
-      alert("我喜歡：" + text);
+    /**
+     * 顯示指定的興趣 section
+     * @param {string} id - 要顯示的 section 的 id
+     */
+    function show(id) {
+      // 取得所有興趣 section
+      const sections = document.querySelectorAll('.interest-section');
+
+      // 先全部隱藏（確保一次只顯示一個）
+      sections.forEach(section => {
+        section.style.display = 'none';
+      });
+
+      // 找到被點擊對應的 section
+      const target = document.getElementById(id);
+
+      // 如果存在，就顯示它
+      if (target) {
+        target.style.display = 'block';
+      }
     }
   </script>
 
