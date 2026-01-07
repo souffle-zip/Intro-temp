@@ -88,6 +88,22 @@
       opacity: 1;
       transform: scale(1);
     }
+
+    @keyframes breatheHint {
+      0% {
+        opacity: 0.4;   /* 最淡 */
+      }
+      50% {
+        opacity: 1;     /* 最清楚 */
+      }
+      100% {
+        opacity: 0.4;   /* 回到最淡 */
+      }
+    }
+
+    .breathe-hint {
+      animation: breatheHint 3.2s ease-in-out infinite;
+    }
   </style>
 </head>
 
@@ -96,20 +112,17 @@
   <!-- ===== Intro ===== -->
   <section class="intro">
     <div class="content">
-      <h1>KO</h1>
       <h1>
         <ruby>
           柯沛辰
-          <rt>
-            コ　ペイチェン
-          </rt>
+          <rt> コ　ペイチェン</rt>
         </ruby>
       </h1>
       <p>
         DDPプログラム<br>
         土木工学専攻 / 修士3年
       </p>
-      <p style="margin-top:40px; color:#888;">
+      <p class="breathe-hint" style="margin-top:40px; color:#888;">
         スクロールしてみて ↓
       </p>
     </div>
