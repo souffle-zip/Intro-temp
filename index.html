@@ -12,20 +12,24 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: #ffffff;
       color: #111;
+      transition: background-color 0.8s ease;
     }
 
     section {
-      min-height: 100vh;          /* 每一段至少一個畫面高 */
+      min-height: 100vh;          
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 40px 24px;
       box-sizing: border-box;
+      position: relative;
     }
 
     .content {
       max-width: 600px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -48,7 +52,7 @@
       color: #555;
     }
 
-    /* ===== 幾何轉場 ===== */
+    /* /* ===== 幾何轉場 ===== */
     .shape {
       width: 80px;
       height: 80px;
@@ -87,23 +91,52 @@
     .show {
       opacity: 1;
       transform: scale(1);
+    } */
+
+    /* ===== 不規則幾何（核心） ===== */
+    .shape {
+      position: fixed;
+      inset: 50%;
+      width: 260px;
+      height: 260px;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 1.2s ease;
+      z-index: -1;
+      background: currentColor;
+
+      /* 不規則形狀 */
+      clip-path: polygon(
+        18% 4%,
+        78% 0%,
+        100% 32%,
+        86% 88%,
+        42% 100%,
+        6% 72%,
+        0% 30%
+      );
     }
 
+    /* 放大成整個畫面 */
+    .shape.show {
+      transform: translate(-50%, -50%) scale(8);
+    }
+
+    /* ===== 每段顏色 ===== */
+    .blue { color: #4a6cff; }
+    .red { color: #ff6a6a; }
+    .green { color: #4fd18b; }
+    .yellow { color: #f2c94c; }
+    
+    .name-ruby rt {
+      transform: translateX(6px); 
+    }
+    
     @keyframes breatheHint {
-      0% {
-        opacity: 0.4;   /* 最淡 */
-      }
-      50% {
-        opacity: 1;     /* 最清楚 */
-      }
-      100% {
-        opacity: 0.4;   /* 回到最淡 */
-      }
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
     }
-
-    .breathe-hint {
-      animation: breatheHint 3.2s ease-in-out infinite;
-    }
+    .breathe-hint { animation: breatheHint 1.2s ease-in-out infinite; }
   </style>
 </head>
 
@@ -113,9 +146,9 @@
   <section class="intro">
     <div class="content">
       <h1>
-        <ruby>
+        <ruby class="name-ruby">
           柯沛辰
-          <rt> コ　ペイチェン</rt>
+          <rt>コ　ペイチェン</rt>
         </ruby>
       </h1>
       <p>
@@ -128,9 +161,9 @@
     </div>
   </section>
 
-  <!-- ===== 幾何轉場：圓 ===== -->
-  <section>
-    <div class="shape circle"></div>
+  <!-- ===== 幾何轉場 ===== -->
+  <section data-bg="#f6f7ff">
+    <div class="shape blue"></div>
   </section>
 
   <!-- ===== 興趣 1 ===== -->
@@ -144,9 +177,9 @@
     </div>
   </section>
 
-  <!-- ===== 幾何轉場：線 ===== -->
-  <section>
-    <div class="shape line"></div>
+  <!-- ===== 幾何轉場 ===== -->
+  <section data-bg="#fff6f6">
+    <div class="shape red"></div>
   </section>
 
   <!-- ===== 興趣 2 ===== -->
@@ -160,9 +193,9 @@
     </div>
   </section>
 
-  <!-- ===== 幾何轉場：方形 ===== -->
-  <section>
-    <div class="shape square"></div>
+  <!-- ===== 幾何轉場 ===== -->
+  <section data-bg="#f6fff8">
+    <div class="shape green"></div>
   </section>
 
   <!-- ===== 興趣 3 ===== -->
@@ -176,9 +209,9 @@
     </div>
   </section>
 
-  <!-- ===== 幾何轉場：點 ===== -->
-  <section>
-    <div class="shape dot"></div>
+  <!-- ===== 幾何轉場 ===== -->
+  <section data-bg="#fffbea">
+    <div class="shape yellow"></div>
   </section>
 
   <!-- ===== 興趣 4 ===== -->
@@ -192,7 +225,32 @@
     </div>
   </section>
 
-  <!-- ===== JavaScript：滑到才出現 ===== -->
+  <!-- ===== JS：幾何 + 背景同步控制 ===== -->
+  <script>
+    const shapes = document.querySelectorAll('.shape');
+    const bgSections = document.querySelectorAll('section[data-bg]');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const shape = entry.target;
+
+        if (entry.isIntersecting) {
+          shape.classList.add('show');
+
+          const bg = shape.parentElement.dataset.bg;
+          document.body.style.backgroundColor = bg;
+        } else {
+          shape.classList.remove('show');
+        }
+      });
+    }, {
+      threshold: 0.6
+    });
+
+    shapes.forEach(shape => observer.observe(shape));
+  </script>
+  
+  <!-- <!-- ===== JavaScript：滑到才出現 ===== -->
   <script>
     // 監聽畫面中元素是否進入視窗
     const observer = new IntersectionObserver(entries => {
@@ -209,7 +267,7 @@
     document.querySelectorAll('.shape').forEach(shape => {
       observer.observe(shape);
     });
-  </script>
+  </script> -->
 
 </body>
 </html>
