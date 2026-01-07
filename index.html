@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KO | Self Introduction</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(120deg, #f0f4ff, #ffffff);
+      color: #333;
+    }
+    .container {
+      max-width: 720px;
+      margin: auto;
+      padding: 60px 24px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+    }
+    .tag {
+      display: inline-block;
+      background: #eef2ff;
+      color: #3f51b5;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin: 6px 6px 0 0;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .tag:hover {
+      background: #3f51b5;
+      color: white;
+    }
+    .hint {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>KO</h1>
+    <div class="subtitle">
+      DDP 計畫｜工學府 土木工學專攻<br>
+      碩士三年級
+    </div>
+
+    <div class="card">
+      <h2>About me</h2>
+      <p>
+        目前就讀於 DDP 計畫的土木工學專攻，  
+        平常在研究與課業之外，也喜歡把時間分給各種興趣。
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Interests</h2>
+      <div>
+        <span class="tag" onclick="show('畫畫')">🎨 畫畫</span>
+        <span class="tag" onclick="show('手工藝')">🧵 手工藝</span>
+        <span class="tag" onclick="show('打球')">🏀 打球</span>
+        <span class="tag" onclick="show('寫程式')">💻 寫程式</span>
+      </div>
+      <div class="hint">點一下看看 👆</div>
+    </div>
+  </div>
+
+  <script>
+    function show(text) {
+      alert("我喜歡：" + text);
+    }
+  </script>
+
+</body>
+</html>
